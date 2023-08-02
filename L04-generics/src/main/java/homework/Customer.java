@@ -8,7 +8,7 @@ public class Customer {
 
     // todo: 1. в этом классе надо исправить ошибки
 
-    public Customer(long id, String name, long scores) {
+    public Customer(long id, final String name, long scores) {
         this.id = id;
         this.name = name;
         this.scores = scores;
