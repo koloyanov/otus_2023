@@ -16,7 +16,7 @@ public class CustomerService {
     }
 
     public Map.Entry<Customer, String> getNext(final Customer customer) {
-        return data.ceilingEntry(customer);
+        return data.higherEntry(customer);
     }
 
     public void add(final Customer customer, final String data) {
