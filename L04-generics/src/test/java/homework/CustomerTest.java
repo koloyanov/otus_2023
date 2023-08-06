@@ -95,7 +95,7 @@ class CustomerTest {
     }
 
     @Test
-   @DisplayName("Модификация коллекции")
+    @DisplayName("Модификация коллекции")
     void mutationTest() {
         // given
         Customer customer1 = new Customer(1, "Ivan", 233);
