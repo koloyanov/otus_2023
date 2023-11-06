@@ -1,6 +1,7 @@
 rootProject.name = "otusJava"
 include("L01-gradle")
 include("L04-generics")
+include("L06-annotations")
 
 pluginManagement {
     val dependencyManagement: String by settings
@@ -30,4 +31,3 @@ pluginManagement {
         }
     }
 }
-include("L04-generics")
