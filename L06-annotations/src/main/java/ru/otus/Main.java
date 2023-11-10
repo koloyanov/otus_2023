@@ -7,10 +7,16 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        startTests(TestClass.class);
+        Main main = new Main();
+
+        List<String> testClasses = List.of("ru.otus.TestClass", "ru.otus.TestClassToo");
+
+        for (String test : testClasses) {
+            main.startTests(Class.forName(test));
+        }
     }
 
-    public static <T> void startTests(Class<T> clazz) throws Exception {
+    public void startTests(Class<?> clazz) throws Exception {
         Method[] methods = clazz.getDeclaredMethods();
         List<Method> beforeMethods = new ArrayList<>();
         List<Method> testMethods = new ArrayList<>();
