@@ -21,7 +21,6 @@ public class Main {
         List<Method> beforeMethods = new ArrayList<>();
         List<Method> testMethods = new ArrayList<>();
         List<Method> afterMethods = new ArrayList<>();
-        Object instance = clazz.getDeclaredConstructor().newInstance();
         int passedTests = 0;
         int failedTests = 0;
 
@@ -35,24 +34,20 @@ public class Main {
                 .filter(method -> method.getAnnotation(After.class) != null)
                 .forEach(afterMethods::add);
 
-        try {
-            for (Method method : beforeMethods) {
-                method.invoke(instance);
+        for (Method test : testMethods) {
+            Object instance = clazz.getDeclaredConstructor().newInstance();
+            for (Method before : beforeMethods){
+                before.invoke(instance);
             }
-            for (Method method : testMethods) {
-                try {
-                    method.invoke(instance);
-                    passedTests++;
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                    failedTests++;
-                }
+            try {
+                test.invoke(instance);
+                passedTests++;
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+                failedTests++;
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            for (Method method : afterMethods) {
-                method.invoke(instance);
+            for (Method after : afterMethods) {
+                after.invoke(instance);
             }
         }
 
