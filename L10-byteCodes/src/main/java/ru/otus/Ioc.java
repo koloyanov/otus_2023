@@ -4,7 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 class Ioc {
     private Ioc() {}
@@ -16,13 +18,13 @@ class Ioc {
 
     static class LoggingInvocationHandler implements InvocationHandler {
         private final TestLoggingInterface loggingInterface;
-        List<String> methods;
+        private final Set<String> methods;
 
         LoggingInvocationHandler(TestLoggingInterface loggingInterface) {
             this.loggingInterface = loggingInterface;
-            methods = new ArrayList<>();
+            methods = new LinkedHashSet<>();
             for (Method method : TestLogging.class.getDeclaredMethods()) {
-                if (method.isAnnotationPresent(Log.class)) {
+                if (method.isAnnotationPresent(Log.class) && method.getParameterCount() == 1 && method.getParameterTypes()[0] == int.class) {
                     methods.add(method.getName());
                 }
             }
