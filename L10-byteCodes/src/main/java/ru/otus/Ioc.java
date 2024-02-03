@@ -3,8 +3,7 @@ package ru.otus;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,9 +21,9 @@ class Ioc {
 
         LoggingInvocationHandler(TestLoggingInterface loggingInterface) {
             this.loggingInterface = loggingInterface;
-            methods = new LinkedHashSet<>();
+            methods = new HashSet<>();
             for (Method method : TestLogging.class.getDeclaredMethods()) {
-                if (method.isAnnotationPresent(Log.class) && method.getParameterCount() == 1 && method.getParameterTypes()[0] == int.class) {
+                if (method.isAnnotationPresent(Log.class) && List.of(method.getParameterTypes()).contains(int.class)) {
                     methods.add(method.getName());
                 }
             }
