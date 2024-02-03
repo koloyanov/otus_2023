@@ -1,30 +1,32 @@
 package ru.otus;
 
+import lombok.Setter;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 public class ATM implements IATM {
-    private final Map<CashType, Long> cash;
+    @Setter
+    private Client client;
 
-    public ATM() {
-        cash = new LinkedHashMap<>();
+    @Setter
+    private CashService cashService;
+
+    @Override
+    public void addCash(Long userId, Map<CashType, Long> incomeCash) {
+        client.addCash(userId, incomeCash);
+        cashService.putCash(incomeCash);
     }
 
     @Override
-    public void giveCash(Map<CashType, Long> incomeCash) {
-        for (CashType type : incomeCash.keySet()) {
-            cash.put(type, incomeCash.get(type));
-        }
+    public Map<CashType, Long> takeCash(Long clientId, Long sum) {
+
+        Map<CashType, Long> result = cashService.getCash()
     }
 
     @Override
-    public Map<CashType, Long> takeCash(Long sum) {
-        return null;
-    }
-
-    @Override
-    public Long allCash() {
+    public Long allCash(Long clientId) {
         return null;
     }
 }

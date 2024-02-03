@@ -3,7 +3,7 @@ package ru.otus;
 import java.util.Map;
 
 public interface IATM {
-    void giveCash(Map<CashType, Long> incomeCash);
-    Map<CashType, Long> takeCash(Long sum);
-    Long allCash();
+    void addCash(Long userId, Map<CashType, Long> incomeCash);
+    Map<CashType, Long> takeCash(Long clientId, Long sum);
+    Long allCash(Long clientId);
 }
