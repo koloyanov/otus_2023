@@ -3,15 +3,18 @@ package ru.otus;
 import lombok.Getter;
 
 public enum CashType {
-    HUNDRED(100L),
-    TWO_HUNDRED(200L),
-    FIVE_HUNDRED(500L),
-    THOUSAND(1000L),
+    FIVE_THOUSAND(5000L),
     TWO_THOUSAND(2000L),
-    FIVE_THOUSAND(5000L);
+    THOUSAND(1000L),
+    FIVE_HUNDRED(500L),
+    TWO_HUNDRED(200L),
+    HUNDRED(100L);
 
-    @Getter
     private Long cash;
+
+    public Long getCash() {
+        return cash;
+    }
 
     CashType(Long cash) {
         this.cash = cash;
