@@ -13,13 +13,13 @@ import ru.otus.data.enums.ProductType;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    protected Long id;
+    private Long id;
     @Column(nullable = false)
-    protected String name;
+    private String name;
     @Column(nullable = false)
-    protected Integer price;
+    private Integer price;
     @ManyToOne
-    protected Publisher publisher;
+    private Publisher publisher;
     @Enumerated(EnumType.STRING)
     private Genre genre;
     @Enumerated(EnumType.STRING)

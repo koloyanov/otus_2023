@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllAddonsByGame(Product product) {
         if (ProductType.GAME.equals(product.getType())) {
-            return productRepository.findALlProductsByAddonForGameId(product.getId());
+            return productRepository.findAllProductsByAddonForGameId(product.getId());
         } else {
             throw new RuntimeException("Product is not a game");
         }

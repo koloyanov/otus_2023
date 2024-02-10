@@ -24,7 +24,6 @@ public class ShopsServiceImpl implements ShopsService {
     @Autowired
     ProductService productService;
 
-
     @Override
     public void addNewShop(String address) {
         if (shopRepository.findFirstByAddress(address).isEmpty()) {
